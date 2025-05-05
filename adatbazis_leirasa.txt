@@ -1,0 +1,90 @@
+Ez az adatbázis egy fiktív magyar futballbajnokság adatainak tárolására szolgál. A rendszer képes nyilvántartani a stadionokat, csapatokat, játékosokat, mérkőzéseket és az egyes gólokat. Az adatbázis segítségével különféle statisztikák és lekérdezések is készíthetők – mi többek közt ezeket a példákat hoztuk: góllövők nemzetisége, tabella generálása és a Fradi meccseinek eredményei.
+
+1. Táblák és kapcsolatok:
+1.1 Stadion
+Tartalmazza a stadionok alapadatait: név, helyszín, kapacitás.
+
+Elsődleges kulcs: stadion_id
+
+1.2 Csapat
+Rögzíti a csapatok nevét, mezszínét és melyik stadionhoz tartoznak.
+
+Kapcsolat: Minden csapat egy stadionhoz kapcsolódik (stadion_id).
+
+Elsődleges kulcs: csapat_id
+
+Idegen kulcs: stadion_id → Stadion
+
+1.3 Játékos
+Tartalmazza a játékosok nevét, születési dátumát, nemzetiségét és csapatát.
+
+Kapcsolat: Minden játékos egy csapathoz tartozik.
+
+Elsődleges kulcs: jatekos_id
+
+Idegen kulcs: csapat_id → Csapat
+
+1.4 Meccs
+Rögzíti a mérkőzések eredményeit, a résztvevő csapatokat, a helyszínt és az időpontot.
+
+Kapcsolat: Két csapat és egy stadion kapcsolódik minden meccshez.
+
+Elsődleges kulcs: meccs_id
+
+Idegen kulcsok:
+
+hazai_csapat_id → Csapat
+
+idegen_csapat_id → Csapat
+
+stadion_id → Stadion
+
+1.5 Gól
+Minden bejegyzés egy gólt jelöl meg, annak időpontját (perc), a játékost és a meccset.
+
+Elsődleges kulcs: gol_id
+
+Idegen kulcsok:
+
+jatekos_id → Jatekos
+
+meccs_id → Meccs
+
+2. Mintaadatok
+Az adatbázis feltöltésre került valósághű adatokkal:
+
+20 stadion,
+
+20 csapat (különböző városokból),
+
+20 játékos (különféle nemzetiségekkel),
+
+20 mérkőzés,
+
+20 gól esemény.
+
+3. Fontosabb lekérdezések:
+Gólok nemzetiségek szerint
+Lekérdezi, hogy mely nemzetiség hány gólt szerzett eddig.
+
+Legtöbb gólt szerző csapat
+Összesíti az összes hazai és idegenbeli gólt, majd meghatározza, melyik csapat a legeredményesebb.
+
+Fradi meccsei
+Listázza a „Ferencvárosi TC” összes eddigi mérkőzését, eredményeit és időpontját.
+
+Legnagyobb gólkülönbségek
+Kiválasztja az 5 legnagyobb különbséggel zárult mérkőzést.
+
+Tabella
+Kiszámítja a bajnokság aktuális állását:
+
+Lejátszott meccsek száma
+
+Győzelem, döntetlen, vereség
+
+Lőtt és kapott gólok
+
+Gólkülönbség
+
+Pontszám (3–1–0 rendszer)
